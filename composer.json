@@ -1,0 +1,23 @@
+{
+    "name": "frix360/nfq_task1",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.4"
+    },
+    "authors": [
+        {
+            "name": "Ignas Dailyde",
+            "email": "ignas.dailyde@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/functions.php",
+            "src/functions_strict.php"
+        ]
+    },
+    "minimum-stability": "stable"
+}
