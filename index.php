@@ -1,17 +1,36 @@
 <?php
 
+use Nfq\Akademija\BookingManager;
+use Nfq\Akademija\Guest;
+use Nfq\Akademija\Reservation;
+use Nfq\Akademija\ReservationException;
+use Nfq\Akademija\SingleRoom;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-echo \calculateHomeWorkSum(3, 2.2, '1');
-echo "</br>";
 
-echo \Nfq\Akademija\Not_Typed\calculateHomeWorkSum(3, 2.2, '1');
-echo "</br>";
+$room = new SingleRoom(1408, 99);
+$guest = new Guest('Vardenis', 'Pavardenis');
+$startDate = new \DateTime('2018-11-01');
+$endDate = new \DateTime('2018-11-05');
+$reservation = new Reservation($startDate, $endDate, $guest);
+$reservation2 = new Reservation('2018-10-30', '2018-11-02', $guest);
+try {
+    BookingManager::bookRoom($room, $reservation);
+} catch (ReservationException $e) {
+    echo $e->getErrorMessage();
+}
 
-echo \Nfq\Akademija\Soft\calculateHomeWorkSum(3, 2.2, '1');
-echo "</br>";
+try {
+    BookingManager::bookRoom($room, $reservation2); // Will throw an exception
+} catch (ReservationException $e) {
+    echo $e->getErrorMessage();
+}
 
-echo \Nfq\Akademija\Strict\calculateHomeWorkSum(3, 2.2, '1');
+
+
+
+
 
 
 
